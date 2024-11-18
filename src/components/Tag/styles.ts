@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { color } from "../../styles";
+import styled from 'styled-components'
+import { color } from '../../styles'
 
 export const TagContainer = styled.div`
   background-color: ${color.principal};
@@ -8,5 +8,4 @@ export const TagContainer = styled.div`
   font-weight: bold;
   padding: 6px 8px;
   display: inline;
-
 `
