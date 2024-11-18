@@ -1,6 +1,6 @@
 import { HeroContaiener, Title } from './styles'
 import logo from '../../assets/images/logo.png'
-import fundo from '../../assets/images/Vector.png'
+import fundo from '../../assets/images/fundo.png'
 
 const Hero = () => (
   <HeroContaiener style={{ backgroundImage: `url(${fundo})` }}>

@@ -1,18 +1,17 @@
-import Cards from "../Restaurants"
-import { Container, List } from "./styles"
+import Cards from '../Restaurants'
+import { Container, List } from './styles'
 
-import Restaurant from "../../models/Restaurant"
+import Restaurant from '../../models/Restaurant'
 
 type Props = {
   restaurants: Restaurant[]
 }
 
 const CardsList = ({ restaurants }: Props) => (
- <Container>
-  <div className="container">
-    <List>
-      {restaurants.map((rest) => (
-        <li>
+  <Container>
+    <div className="container">
+      <List>
+        {restaurants.map((rest) => (
           <Cards
             key={rest.id}
             image={rest.image}
@@ -21,11 +20,10 @@ const CardsList = ({ restaurants }: Props) => (
             rate={rest.rate}
             description={rest.description}
           />
-        </li>
-      ))}
-    </List>
-  </div>
- </Container>
+        ))}
+      </List>
+    </div>
+  </Container>
 )
 
 export default CardsList

@@ -13,7 +13,7 @@ class Restaurant {
     rate: string,
     description: string,
     id: number
-  ){
+  ) {
     this.image = image
     this.title = title
     this.infos = infos
