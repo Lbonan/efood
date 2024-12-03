@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react'
 import CardsList from '../../components/RestaurantsList'
 import Hero from '../../components/Hero'
 
 import Footer from '../../components/Footer'
-import { useEffect, useState } from 'react'
 
 export type Cardapio = {
   foto: string
