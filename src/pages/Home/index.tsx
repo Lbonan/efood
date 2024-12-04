@@ -3,6 +3,7 @@ import CardsList from '../../components/RestaurantsList'
 import Hero from '../../components/Hero'
 
 import Footer from '../../components/Footer'
+import { useGetRestaurantsQuery } from '../../services/api'
 
 export type Cardapio = {
   foto: string
@@ -25,21 +26,18 @@ export type Restaurante = {
 }
 
 const Home = () => {
-  const [restaurants, setRestaurants] = useState<Restaurante[]>([])
+  const { data: restaurants } = useGetRestaurantsQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setRestaurants(res))
-  }, [])
-
-  return (
-    <>
-      <Hero />
-      <CardsList restaurants={restaurants} />
-      <Footer />
-    </>
-  )
+  if (restaurants) {
+    return (
+      <>
+        <Hero />
+        <CardsList restaurants={restaurants} />
+        <Footer />
+      </>
+    )
+  }
+  return <h4>Carregando...</h4>
 }
 
 export default Home

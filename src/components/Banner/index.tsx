@@ -2,6 +2,7 @@ import { BannerImg, Titulo, Tipo } from './styles'
 
 import { Restaurante } from '../../pages/Home'
 import { useEffect, useState } from 'react'
+import { useGetFoodsQuery } from '../../services/api'
 
 export type Props = {
   id: number
