@@ -12,7 +12,7 @@ export const BannerImg = styled.div`
   .container {
     position: relative;
     padding-top: 220px;
-    z-index: 3;
+    z-index: 1;
   }
 
   &::after {

@@ -4,6 +4,7 @@ import FoodsList from '../../components/FoodsList'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import { useGetFoodsQuery } from '../../services/api'
+import Cart from '../../components/Cart'
 
 const Menu = () => {
   const { id } = useParams()
@@ -19,6 +20,7 @@ const Menu = () => {
       <Banner id={restaurant.id} />
       <FoodsList foods={restaurant.cardapio} />
       <Footer />
+      <Cart />
     </>
   )
 }
