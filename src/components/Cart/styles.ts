@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color } from '../../styles'
+import { breakpoint, color } from '../../styles'
 import lixeira from '../../assets/images/lixeira-de-reciclagem 1.png'
 import { ButtonContainer } from '../Button/styles'
 
@@ -34,6 +34,10 @@ export const SiderBar = styled.aside`
   padding: 32px 8px 12px 8px;
   max-width: 360px;
   width: 100%;
+
+  @media (max-width: ${breakpoint.tablet}) {
+    max-width: 300px;
+  }
 
   > div {
     display: flex;

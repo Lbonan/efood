@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color } from '../../styles'
+import { breakpoint, color } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
 export const FoodCard = styled.div`
@@ -66,6 +66,10 @@ export const ModalContent = styled.div`
   z-index: 1;
   background-color: ${color.principal};
 
+  @media (max-width: ${breakpoint.tablet}) {
+    max-width: 90%;
+  }
+
   > div {
     display: flex;
     padding: 0 0 32px 32px;
@@ -112,6 +116,21 @@ export const ModalContent = styled.div`
         background-color: ${color.bege};
         color: ${color.principal};
         cursor: pointer;
+      }
+    }
+
+    @media (max-width: ${breakpoint.tablet}) {
+      display: block;
+
+      img {
+        width: 90%;
+        align-self: center;
+      }
+
+      p {
+        font-size: 12px;
+        max-width: 94%;
+        text-align: justify;
       }
     }
   }
