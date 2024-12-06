@@ -20,4 +20,12 @@ export const LinkRestaurants = styled.a`
   text-decoration: none;
   color: ${color.principal};
 `
-export const LinkCart = styled(LinkRestaurants)``
+export const LinkCart = styled(LinkRestaurants)`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    margin-left: 12px;
+  }
+`

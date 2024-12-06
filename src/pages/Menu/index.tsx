@@ -8,6 +8,7 @@ import Cart from '../../components/Cart'
 
 const Menu = () => {
   const { id } = useParams()
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { data: restaurant } = useGetFoodsQuery(id!)
 
   if (!restaurant) {

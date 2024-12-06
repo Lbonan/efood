@@ -14,9 +14,9 @@ const FoodsList = ({ foods }: Props) => (
           <Foods
             key={food.id}
             id={food.id}
-            title={food.nome}
-            description={food.descricao}
-            image={food.foto}
+            nome={food.nome}
+            descricao={food.descricao}
+            foto={food.foto}
             porcao={food.porcao}
             preco={food.preco}
           />

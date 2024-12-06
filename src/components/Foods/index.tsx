@@ -3,11 +3,13 @@ import Button from '../Button'
 import { FoodCard, Title, Description, Modal, ModalContent } from './styles'
 
 import close from '../../assets/images/close.png'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
-  title: string
-  description: string
-  image: string
+  nome: string
+  descricao: string
+  foto: string
   porcao: string
   preco: number
   id: number
@@ -20,8 +22,15 @@ export const currencyBrl = (preco = 0) => {
   }).format(preco)
 }
 
-const Food = ({ image, title, description, porcao, preco }: Props) => {
+const Food = ({ foto, nome, descricao, porcao, preco, id }: Props) => {
   const [isVisible, setIsVisible] = useState(false)
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    const food = { id, nome, descricao, porcao, foto, preco }
+    dispatch(add(food))
+    dispatch(open())
+  }
 
   const showModal = () => {
     if (isVisible) {
@@ -41,9 +50,9 @@ const Food = ({ image, title, description, porcao, preco }: Props) => {
   return (
     <>
       <FoodCard>
-        <img src={image} alt={title} />
-        <Title>{title}</Title>
-        <Description>{getDescricao(description)}</Description>
+        <img src={foto} alt={nome} />
+        <Title>{nome}</Title>
+        <Description>{getDescricao(descricao)}</Description>
         <Button
           type="button"
           onClick={() => setIsVisible(true)}
@@ -55,19 +64,19 @@ const Food = ({ image, title, description, porcao, preco }: Props) => {
       <Modal className={showModal()}>
         <ModalContent>
           <div>
-            <img src={image} alt="pizza" />
+            <img src={foto} alt="pizza" />
             <div>
               <div>
-                <h2>{title}</h2>
+                <h2>{nome}</h2>
                 <img
                   src={close}
                   onClick={() => setIsVisible(false)}
                   alt="Clique pra fechar"
                 />
               </div>
-              <p>{description}</p>
+              <p>{descricao}</p>
               <p>Serve: {porcao}</p>
-              <button type="button">
+              <button type="button" onClick={addToCart}>
                 Adicionar ao carrinho - {currencyBrl(preco)}
               </button>
             </div>

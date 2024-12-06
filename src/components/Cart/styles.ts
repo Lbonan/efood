@@ -53,6 +53,7 @@ export const SiderBar = styled.aside`
 export const CartItem = styled.li`
   display: flex;
   background-color: ${color.bege};
+  margin-bottom: 16px;
   padding: 8px 12px 12px 8px;
   position: relative;
 
@@ -69,6 +70,8 @@ export const CartItem = styled.li`
   }
 
   span {
+    display: block;
+    font-weight: bold;
     color: ${color.principal};
   }
 
