@@ -26,34 +26,43 @@ const Cart = () => {
     <CartContaiener className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <SiderBar>
-        <ul>
-          {items.map((item) => (
-            <CartItem key={item.id}>
-              <img src={item.foto} alt={item.nome} />
-              <div>
-                <h3>{item.nome}</h3>
-                <span>{currencyBrl(item.preco)}</span>
-              </div>
-              <button
-                onClick={() => removeItem(item.id)}
-                type="button"
-                title="Remover pedido"
-              />
-            </CartItem>
-          ))}
-        </ul>
-        <p>
-          <i>
-            <strong>{items.length}</strong> pedidos no carrinho
-          </i>
-        </p>
-        <div>
-          <p>Valor Total</p>
-          <p>{currencyBrl(getTotalPrice())}</p>
-        </div>
-        <Button type="button" title="Clique para continuar com o pedido">
-          Continuar com o pedido
-        </Button>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <CartItem key={item.id}>
+                  <img src={item.foto} alt={item.nome} />
+                  <div>
+                    <h3>{item.nome}</h3>
+                    <span>{currencyBrl(item.preco)}</span>
+                  </div>
+                  <button
+                    onClick={() => removeItem(item.id)}
+                    type="button"
+                    title="Remover pedido"
+                  />
+                </CartItem>
+              ))}
+            </ul>
+            <p>
+              <i>
+                <strong>{items.length}</strong> pedidos no carrinho
+              </i>
+            </p>
+            <div>
+              <p>Valor Total</p>
+              <p>{currencyBrl(getTotalPrice())}</p>
+            </div>
+            <Button type="button" title="Clique para continuar com o pedido">
+              Continuar com o pedido
+            </Button>
+          </>
+        ) : (
+          <p className="empty-text">
+            O carrinho está vazio, adicione pelo menos um item para seguir com a
+            compra
+          </p>
+        )}
       </SiderBar>
     </CartContaiener>
   )

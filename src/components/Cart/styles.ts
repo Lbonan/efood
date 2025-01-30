@@ -46,6 +46,12 @@ export const SiderBar = styled.aside`
     margin-bottom: 16px;
   }
 
+  .empty-text {
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
   ${ButtonContainer} {
     cursor: pointer;
     background-color: ${color.bege};

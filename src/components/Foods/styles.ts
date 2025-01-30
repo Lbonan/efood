@@ -7,6 +7,7 @@ export const FoodCard = styled.div`
   color: ${color.bege};
   border-radius: 8px;
   padding: 8px;
+  height: 100%;
 
   img {
     width: 100%;

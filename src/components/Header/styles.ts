@@ -14,9 +14,8 @@ export const HeaderContainer = styled.header`
     align-items: center;
 
     @media (max-width: ${breakpoint.tablet}) {
-      display: grid;
-      justify-content: center;
-      gap: 12px;
+      flex: 1;
+      justify-content: space-between;
     }
   }
 `
