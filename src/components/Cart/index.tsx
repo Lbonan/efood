@@ -1,15 +1,18 @@
-import { Overlay, CartContainer, SideBar, CartItem } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { Overlay, CartContainer, SideBar, CartItem } from './styles'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
 import Checkout from '../../pages/Checkout'
-import { CartButton, CartButtonLink } from '../../styles'
-import { useState } from 'react'
+import { CartButton, color } from '../../styles'
 import { getTotalPrice, currencyBrl } from '../../utils'
+import { usePurchaseMutation } from '../../services/api'
+import { ClipLoader } from 'react-spinners'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
+  const [purchase, { isLoading }] = usePurchaseMutation()
 
   const [showCheckout, setShowCheckout] = useState(false)
 
@@ -68,7 +71,13 @@ const Cart = () => {
               onClick={goToCheckout}
               title="Clique para continuar com o pedido"
             >
-              Continuar com o pedido
+              {isLoading ? (
+                <>
+                  <ClipLoader size={16} color={color.principal} />
+                </>
+              ) : (
+                'Continuar com o pedido'
+              )}
             </CartButton>
           </>
         )}

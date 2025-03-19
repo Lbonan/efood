@@ -1,17 +1,23 @@
+import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Navigate } from 'react-router-dom'
 import InputMask from 'react-input-mask'
+import { ClipLoader } from 'react-spinners'
 
-import { Field, DeliveryContainer } from './styles'
-import { CartButton, CartButtonLink } from '../../styles'
+import {
+  Field,
+  DeliveryContainer,
+  PaymentContainer,
+  ConfirmedContainer
+} from './styles'
+import { CartButton, color } from '../../styles'
 import { usePurchaseMutation } from '../../services/api'
-import { RootReducer } from '../../store'
+
 import { currencyBrl, getTotalPrice } from '../../utils'
-import { useEffect, useState } from 'react'
 import { open, clear } from '../../store/reducers/cart'
-import { Card } from '../../components/Restaurants/styles'
+import { RootReducer } from '../../store'
 
 const Checkout = ({ onClose }: { onClose: () => void }) => {
   const [payWith, setPayWith] = useState(false)
@@ -158,13 +164,14 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
   return (
     <div>
       {isSuccess && data ? (
-        <div>
+        <ConfirmedContainer>
           <h2>Pedido realizado - {data.orderId}</h2>
           <p>
             {' '}
             Estamos felizes em informar que seu pedido já está em processo de
             preparação e, em breve, será entregue no endereço fornecido.
           </p>
+          <br />
           <p>
             Gostaríamos de ressaltar que nossos entregadores não estão
             autorizados a realizar cobranças extras.
@@ -174,12 +181,13 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
             pedido, garantindo assim sua segurança e bem-estar durante a
             refeição.
           </p>
+          <br />
           <p>
             {' '}
             Esperamos que desfrute de uma deliciosa e agradável experiência
             gastronômica. Bom apetite!
           </p>
-          <div>
+          <div className="buttomContainer">
             <CartButton
               type="button"
               title="concluir compra"
@@ -188,7 +196,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
               Concluir
             </CartButton>
           </div>
-        </div>
+        </ConfirmedContainer>
       ) : !payWith ? (
         <>
           <form onSubmit={form.handleSubmit}>
@@ -269,7 +277,13 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                   title="Continuar com o pagamento"
                   onClick={validateDelivery}
                 >
-                  Continuar o pagamneto
+                  {isLoading ? (
+                    <>
+                      <ClipLoader size={16} color={color.principal} />
+                    </>
+                  ) : (
+                    'Continuar o pagamento'
+                  )}
                 </CartButton>
                 <CartButton
                   type="button"
@@ -285,11 +299,10 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
       ) : (
         <>
           <form onSubmit={form.handleSubmit}>
-            <div>
+            <PaymentContainer>
               <p>
                 Pagamento - valor a pagar {currencyBrl(getTotalPrice(items))}
               </p>
-
               <Field>
                 <label htmlFor="cardOwner">Nome do cartão*</label>
                 <input
@@ -302,33 +315,35 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                   className={checkInputHasError('cardOwner') ? 'error' : ''}
                 />
               </Field>
-              <Field>
-                <label htmlFor="cardNumber">Número do cartão*</label>
-                <InputMask
-                  type="text"
-                  name="cardNumber"
-                  id="cardNumber"
-                  value={form.values.cardNumber}
-                  onChange={form.handleChange}
-                  onBlur={form.handleBlur}
-                  className={checkInputHasError('cardNumber') ? 'error' : ''}
-                  mask="9999 9999 9999 9999"
-                />
-              </Field>
-              <Field>
-                <label htmlFor="cardCode">CVV*</label>
-                <InputMask
-                  type="text"
-                  name="cardCode"
-                  id="cardCode"
-                  value={form.values.cardCode}
-                  onChange={form.handleChange}
-                  onBlur={form.handleBlur}
-                  className={checkInputHasError('cardCode') ? 'error' : ''}
-                  mask="999"
-                />
-              </Field>
-              <div>
+              <div className="fieldContainer">
+                <Field>
+                  <label htmlFor="cardNumber">Número do cartão*</label>
+                  <InputMask
+                    type="text"
+                    name="cardNumber"
+                    id="cardNumber"
+                    value={form.values.cardNumber}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('cardNumber') ? 'error' : ''}
+                    mask="9999 9999 9999 9999"
+                  />
+                </Field>
+                <Field>
+                  <label htmlFor="cardCode">CVV*</label>
+                  <InputMask
+                    type="text"
+                    name="cardCode"
+                    id="cardCode"
+                    value={form.values.cardCode}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('cardCode') ? 'error' : ''}
+                    mask="999"
+                  />
+                </Field>
+              </div>
+              <div className="fieldContainer">
                 <Field>
                   <label htmlFor="expiresMonth">Mês de vencimento*</label>
                   <InputMask
@@ -358,13 +373,22 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                   />
                 </Field>
               </div>
-              <div>
-                <CartButton type="submit">Finalizar compra</CartButton>
-                <CartButton type="button" onClick={handleVoltar}>
+
+              <div className="buttomContainer">
+                <CartButton type="submit" title="Finalizar a compra">
+                  {isLoading ? (
+                    <>
+                      <ClipLoader size={16} color={color.principal} />
+                    </>
+                  ) : (
+                    'Finalizar compra'
+                  )}
+                </CartButton>
+                <CartButton type="button" title="voltar" onClick={handleVoltar}>
                   Voltar para edição de endereço
                 </CartButton>
               </div>
-            </div>
+            </PaymentContainer>
           </form>
         </>
       )}

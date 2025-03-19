@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import { useGetFoodsQuery } from '../../services/api'
 import Cart from '../../components/Cart'
+import Loader from '../../Loader'
 
 const Menu = () => {
   const { id } = useParams()
@@ -12,7 +13,7 @@ const Menu = () => {
   const { data: restaurant } = useGetFoodsQuery(id!)
 
   if (!restaurant) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
 
   return (

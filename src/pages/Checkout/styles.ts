@@ -39,4 +39,48 @@ export const Field = styled.div`
   }
 `
 
-export const PaymentContainer = styled.div``
+export const PaymentContainer = styled.div`
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+
+  .buttomContainer {
+    margin-top: 16px;
+  }
+
+  ${CartButton} {
+    margin-bottom: 12px;
+  }
+
+  .fieldContainer {
+    display: flex;
+    column-gap: 34px;
+
+    #cardNumber {
+      width: 228px;
+    }
+    #expiresMonth {
+      width: 150px;
+    }
+  }
+`
+
+export const ConfirmedContainer = styled.div`
+  .buttomContainer {
+    margin-top: 24px;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 22px;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18.75px;
+    margin-bottom: 8px;
+  }
+`

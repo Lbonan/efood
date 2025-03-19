@@ -1,7 +1,7 @@
 import { BannerImg, Titulo, Tipo } from './styles'
+import Loader from '../../Loader'
 
 import { useEffect, useState } from 'react'
-import { useGetFoodsQuery } from '../../services/api'
 
 export type Props = {
   id: number
@@ -17,7 +17,7 @@ const Banner = ({ id }: Props) => {
   }, [id])
 
   if (!restaurant) {
-    return <h3>Carregando banner...</h3>
+    return <Loader />
   }
   return (
     <BannerImg style={{ backgroundImage: `url(${restaurant.capa})` }}>
