@@ -5,6 +5,7 @@ import { FoodCard, Title, Description, Modal, ModalContent } from './styles'
 import close from '../../assets/images/close.png'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
+import { currencyBrl, getDescricao } from '../../utils'
 
 type Props = {
   nome: string
@@ -13,13 +14,6 @@ type Props = {
   porcao: string
   preco: number
   id: number
-}
-
-export const currencyBrl = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const Food = ({ foto, nome, descricao, porcao, preco, id }: Props) => {
@@ -37,14 +31,6 @@ const Food = ({ foto, nome, descricao, porcao, preco, id }: Props) => {
       return 'visible'
     }
     return ''
-  }
-
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 132) {
-      return descricao.slice(0, 129) + '...'
-    }
-
-    return descricao
   }
 
   return (

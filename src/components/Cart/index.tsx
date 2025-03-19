@@ -1,32 +1,42 @@
-import { Overlay, CartContaiener, SiderBar, CartItem } from './styles'
-import pizza from '../../assets/images/marguerita.png'
-import Button from '../Button'
+import { Overlay, CartContainer, SideBar, CartItem } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
-import { currencyBrl } from '../Foods'
+import Checkout from '../../pages/Checkout'
+import { CartButton, CartButtonLink } from '../../styles'
+import { useState } from 'react'
+import { getTotalPrice, currencyBrl } from '../../utils'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
 
+  const [showCheckout, setShowCheckout] = useState(false)
+
   const closeCart = () => {
     dispatch(close())
-  }
-
-  const getTotalPrice = () => {
-    return items.reduce((acum, atual) => (acum += atual.preco), 0)
   }
 
   const removeItem = (id: number) => {
     dispatch(remove(id))
   }
 
+  const goToCheckout = () => {
+    setShowCheckout(true)
+    closeCart()
+  }
+
   return (
-    <CartContaiener className={isOpen ? 'is-open' : ''}>
+    <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
-      <SiderBar>
-        {items.length > 0 ? (
+      <SideBar>
+        {items.length === 0 && (
+          <p className="empty-text">
+            O carrinho está vazio, adicione pelo menos um item para seguir com a
+            compra
+          </p>
+        )}
+        {!showCheckout && items.length > 0 && (
           <>
             <ul>
               {items.map((item) => (
@@ -51,20 +61,20 @@ const Cart = () => {
             </p>
             <div>
               <p>Valor Total</p>
-              <p>{currencyBrl(getTotalPrice())}</p>
+              <p>{currencyBrl(getTotalPrice(items))}</p>
             </div>
-            <Button type="button" title="Clique para continuar com o pedido">
+            <CartButton
+              type="button"
+              onClick={goToCheckout}
+              title="Clique para continuar com o pedido"
+            >
               Continuar com o pedido
-            </Button>
+            </CartButton>
           </>
-        ) : (
-          <p className="empty-text">
-            O carrinho está vazio, adicione pelo menos um item para seguir com a
-            compra
-          </p>
         )}
-      </SiderBar>
-    </CartContaiener>
+        {showCheckout && <Checkout onClose={() => setShowCheckout(false)} />}
+      </SideBar>
+    </CartContainer>
   )
 }
 

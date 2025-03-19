@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Restaurante } from '../../pages/Home'
 import Cards from '../Restaurants'
 import { Container, List } from './styles'
 

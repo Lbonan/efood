@@ -13,7 +13,7 @@ export const Overlay = styled.div`
   opacity: 0.7;
 `
 
-export const CartContaiener = styled.div`
+export const CartContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +28,7 @@ export const CartContaiener = styled.div`
     display: flex;
   }
 `
-export const SiderBar = styled.aside`
+export const SideBar = styled.aside`
   background-color: ${color.principal};
   z-index: 1;
   padding: 32px 8px 12px 8px;

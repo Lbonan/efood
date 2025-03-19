@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const color = {
   principal: '#E66767',
@@ -35,4 +35,31 @@ export const GlobalCss = createGlobalStyle`
     max-width: 80%;
   }
  }
+`
+export const CartButtonLink = styled.a`
+  background-color: ${color.bege};
+  color: ${color.principal};
+  border: none;
+  padding: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+`
+
+export const CartButton = styled.button`
+  background-color: ${color.bege};
+  color: ${color.principal};
+  border: none;
+  padding: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  cursor: pointer;
 `

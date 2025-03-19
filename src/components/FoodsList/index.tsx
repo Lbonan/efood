@@ -1,4 +1,3 @@
-import { Cardapio } from '../../pages/Home'
 import Foods from '../Foods'
 import { FoodList, CardContainer } from './styles'
 
