@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { breakpoint } from '../../styles'
 
 export const HeroContaiener = styled.header`
   background-size: cover;
