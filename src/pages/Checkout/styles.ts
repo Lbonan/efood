@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { CartButton, color } from '../../styles'
+import { breakpoint, CartButton, color } from '../../styles'
 
 export const DeliveryContainer = styled.div`
   .CepAndNumber {
@@ -63,6 +63,17 @@ export const PaymentContainer = styled.div`
     }
     #expiresMonth {
       width: 150px;
+    }
+
+    @media (max-width: ${breakpoint.tablet}) {
+      display: block;
+
+      #cardNumber {
+        width: 100%;
+      }
+      #expiresMonth {
+        width: 100%;
+      }
     }
   }
 `
