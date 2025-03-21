@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color } from '../../styles'
+import { breakpoint, color } from '../../styles'
 
 export const BannerImg = styled.div`
   width: 100%;
@@ -29,6 +29,10 @@ export const BannerImg = styled.div`
 export const Titulo = styled.h2`
   font-size: 32px;
   color: ${color.branca};
+
+  @media (max-width: ${breakpoint.tablet}) {
+    font-size: 28px;
+  }
 `
 export const Tipo = styled.p`
   font-size: 32px;

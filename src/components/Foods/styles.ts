@@ -133,6 +133,10 @@ export const ModalContent = styled.div`
         max-width: 94%;
         text-align: justify;
       }
+
+      button {
+        width: 90%;
+      }
     }
   }
 `

@@ -15,7 +15,8 @@ export const HeaderContainer = styled.header`
 
     @media (max-width: ${breakpoint.tablet}) {
       flex: 1;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 22px;
     }
   }
 `
@@ -26,6 +27,7 @@ export const LinkRestaurants = styled.a`
   color: ${color.principal};
 
   @media (max-width: ${breakpoint.tablet}) {
+    display: none;
   }
 `
 export const LinkCart = styled(LinkRestaurants)`
@@ -36,5 +38,10 @@ export const LinkCart = styled(LinkRestaurants)`
 
   img {
     margin-left: 12px;
+  }
+
+  @media (max-width: ${breakpoint.tablet}) {
+    margin-left: 20px;
+    font-size: 18px;
   }
 `
