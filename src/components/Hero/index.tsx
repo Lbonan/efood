@@ -7,9 +7,9 @@ const Hero = () => (
     <div className="container">
       <img src={logo} alt="Efood" />
       <Title>
-        Viva experiências gastronômicasno
+        Viva experiências gastronômicas
         <br />
-        conforto da sua casa
+        no conforto da sua casa
       </Title>
     </div>
   </HeroContaiener>
