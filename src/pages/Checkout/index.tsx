@@ -340,6 +340,8 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cardCode') ? 'error' : ''}
                     mask="999"
+                    maxLength={3}
+                    pattern="\d{1,3}"
                   />
                 </Field>
               </div>

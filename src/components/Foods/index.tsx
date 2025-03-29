@@ -5,7 +5,7 @@ import { FoodCard, Title, Description, Modal, ModalContent } from './styles'
 import close from '../../assets/images/close.png'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
-import { currencyBrl, getDescricao } from '../../utils'
+import { currencyBrl, getDescription } from '../../utils'
 
 type Props = {
   nome: string
@@ -23,6 +23,7 @@ const Food = ({ foto, nome, descricao, porcao, preco, id }: Props) => {
   const addToCart = () => {
     const food = { id, nome, descricao, porcao, foto, preco }
     dispatch(add(food))
+    setIsVisible(false)
     dispatch(open())
   }
 
@@ -38,7 +39,7 @@ const Food = ({ foto, nome, descricao, porcao, preco, id }: Props) => {
       <FoodCard>
         <img src={foto} alt={nome} />
         <Title>{nome}</Title>
-        <Description>{getDescricao(descricao)}</Description>
+        <Description>{getDescription(descricao)}</Description>
         <Button
           type="button"
           onClick={() => setIsVisible(true)}

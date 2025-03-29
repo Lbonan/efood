@@ -14,7 +14,7 @@ export const currencyBrl = (preco = 0) => {
   }).format(preco)
 }
 
-export const getDescricao = (descricao: string) => {
+export const getDescription = (descricao: string) => {
   if (descricao.length > 132) {
     return descricao.slice(0, 129) + '...'
   }
